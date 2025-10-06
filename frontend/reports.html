@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Relatórios - EcoPlan</title>
+    
+    <link rel="stylesheet" href="styles/index.css">
+    <link rel="stylesheet" href="styles/reports.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-content">
+                <div class="logo">
+                    <span class="logo-icon">🌍</span>
+                    <h1>EcoPlan</h1>
+                    <span class="beta-tag">BETA</span>
+                </div>
+                <nav class="main-nav">
+                    <ul class="nav-list">
+                        <li><a href="index.html" class="nav-link">Início</a></li>
+                        <li><a href="projects.html" class="nav-link">Projetos</a></li>
+                        <li><a href="analysis.html" class="nav-link">Análises</a></li>
+                        <li><a href="reports.html" class="nav-link active">Relatórios</a></li>
+                    </ul>
+                </nav>
+                <div class="user-actions">
+            <button class="btn-login" id="headerLoginBtn">Entrar</button>
+            <button class="btn-register" id="headerRegisterBtn">
+              Cadastrar
+            </button>
+
+            <!-- Estado logado (inicialmente escondido) -->
+            <div class="user-menu" id="userMenu" style="display: none">
+              <!-- <button class="user-avatar" id="userAvatar">
+                <span id="avatarInitials">U</span>
+              </button> -->
+              <!-- <div class="user-dropdown" id="userDropdown">
+                <div class="user-info">
+                  <span id="userName">Usuário</span>
+                  <span id="userEmail">usuario@email.com</span>
+                </div>
+                <div class="dropdown-actions">
+                  <a href="profile.html" class="dropdown-item">
+                    <span class="dropdown-icon">👤</span>
+                    Meu Perfil
+                  </a>
+                  <a href="projects.html" class="dropdown-item">
+                    <span class="dropdown-icon">📋</span>
+                    Meus Projetos
+                  </a>
+                  <a href="settings.html" class="dropdown-item">
+                    <span class="dropdown-icon">⚙️</span>
+                    Configurações
+                  </a>
+                  <div class="dropdown-divider"></div>
+                  <button class="dropdown-item logout-btn" id="logoutBtn">
+                    <span class="dropdown-icon">🚪</span>
+                    Sair
+                  </button>
+                </div>
+              </div> -->
+               <button class="dropdown-item logout-btn" id="logoutBtn">Sair</button>
+            </div>
+          </div>
+        </header>
+
+        <!-- Conteúdo Principal -->
+        <main class="reports-main">
+            <div class="reports-container">
+                <!-- Header -->
+                <div class="page-header">
+                    <div class="header-content">
+                        <h1>Relatórios e Documentação</h1>
+                        <p>Gere, visualize e exporte relatórios completos dos seus projetos e análises</p>
+                    </div>
+                    <button class="btn-primary" id="generateReportBtn">
+                        <span class="btn-icon">📊</span>
+                        Gerar Relatório
+                    </button>
+                </div>
+
+                <!-- Métricas Rápidas -->
+                <div class="reports-metrics">
+                    <div class="metric-card">
+                        <div class="metric-icon">📄</div>
+                        <div class="metric-info">
+                            <h3>28</h3>
+                            <p>Relatórios Gerados</p>
+                            <span class="metric-trend positive">+18%</span>
+                        </div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-icon">🕐</div>
+                        <div class="metric-info">
+                            <h3>12</h3>
+                            <p>Relatórios Este Mês</p>
+                            <span class="metric-trend positive">+5%</span>
+                        </div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-icon">📤</div>
+                        <div class="metric-info">
+                            <h3>156</h3>
+                            <p>Exportações</p>
+                            <span class="metric-trend positive">+22%</span>
+                        </div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-icon">👥</div>
+                        <div class="metric-info">
+                            <h3>24</h3>
+                            <p>Compartilhamentos</p>
+                            <span class="metric-trend positive">+8%</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Filtros e Busca -->
+                <div class="reports-toolbar">
+                    <div class="filters-section">
+                        <div class="filter-group">
+                            <label for="reportTypeFilter">Tipo</label>
+                            <select id="reportTypeFilter">
+                                <option value="all">Todos os Tipos</option>
+                                <option value="project">Relatório de Projeto</option>
+                                <option value="analysis">Relatório de Análise</option>
+                                <option value="sustainability">Relatório de Sustentabilidade</option>
+                                <option value="executive">Relatório Executivo</option>
+                                <option value="technical">Relatório Técnico</option>
+                            </select>
+                        </div>
+                        <div class="filter-group">
+                            <label for="dateRangeFilter">Período</label>
+                            <select id="dateRangeFilter">
+                                <option value="all">Todo Período</option>
+                                <option value="today">Hoje</option>
+                                <option value="week">Esta Semana</option>
+                                <option value="month" selected>Este Mês</option>
+                                <option value="quarter">Este Trimestre</option>
+                                <option value="year">Este Ano</option>
+                            </select>
+                        </div>
+                        <div class="filter-group">
+                            <label for="statusFilter">Status</label>
+                            <select id="statusFilter">
+                                <option value="all">Todos</option>
+                                <option value="completed">Concluídos</option>
+                                <option value="draft">Rascunhos</option>
+                                <option value="generating">Gerando</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="search-section">
+                        <div class="search-box">
+                            <input type="text" id="reportsSearch" placeholder="Buscar relatórios...">
+                            <span class="search-icon">🔍</span>
+                        </div>
+                        <button class="btn-secondary" id="advancedFiltersBtn">
+                            <span class="btn-icon">⚙️</span>
+                            Filtros Avançados
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Templates de Relatório -->
+                <div class="report-templates">
+                    <h2>Modelos de Relatório</h2>
+                    <div class="templates-grid">
+                        <!-- Template 1 -->
+                        <div class="template-card" data-template="executive">
+                            <div class="template-header">
+                                <div class="template-icon">👔</div>
+                                <h3>Relatório Executivo</h3>
+                            </div>
+                            <p class="template-description">
+                                Resumo executivo com indicadores-chave para tomada de decisão estratégica.
+                            </p>
+                            <div class="template-features">
+                                <span class="feature-tag">Visão Geral</span>
+                                <span class="feature-tag">KPIs</span>
+                                <span class="feature-tag">Recomendações</span>
+                            </div>
+                            <div class="template-actions">
+                                <button class="btn-secondary preview-btn">Visualizar</button>
+                                <button class="btn-primary use-template-btn" data-template="executive">
+                                    Usar Modelo
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Template 2 -->
+                        <div class="template-card" data-template="technical">
+                            <div class="template-header">
+                                <div class="template-icon">🔧</div>
+                                <h3>Relatório Técnico</h3>
+                            </div>
+                            <p class="template-description">
+                                Documentação técnica detalhada com metodologia, dados e resultados.
+                            </p>
+                            <div class="template-features">
+                                <span class="feature-tag">Metodologia</span>
+                                <span class="feature-tag">Dados Técnicos</span>
+                                <span class="feature-tag">Análises</span>
+                            </div>
+                            <div class="template-actions">
+                                <button class="btn-secondary preview-btn">Visualizar</button>
+                                <button class="btn-primary use-template-btn" data-template="technical">
+                                    Usar Modelo
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Template 3 -->
+                        <div class="template-card" data-template="sustainability">
+                            <div class="template-header">
+                                <div class="template-icon">♻️</div>
+                                <h3>Relatório de Sustentabilidade</h3>
+                            </div>
+                            <p class="template-description">
+                                Avaliação de impactos ambientais e indicadores de sustentabilidade.
+                            </p>
+                            <div class="template-features">
+                                <span class="feature-tag">Impacto Ambiental</span>
+                                <span class="feature-tag">Indicadores ESG</span>
+                                <span class="feature-tag">Recomendações</span>
+                            </div>
+                            <div class="template-actions">
+                                <button class="btn-secondary preview-btn">Visualizar</button>
+                                <button class="btn-primary use-template-btn" data-template="sustainability">
+                                    Usar Modelo
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Template 4 -->
+                        <div class="template-card" data-template="project">
+                            <div class="template-header">
+                                <div class="template-icon">📋</div>
+                                <h3>Relatório de Projeto</h3>
+                            </div>
+                            <p class="template-description">
+                                Acompanhamento completo do projeto com progresso e métricas.
+                            </p>
+                            <div class="template-features">
+                                <span class="feature-tag">Progresso</span>
+                                <span class="feature-tag">Métricas</span>
+                                <span class="feature-tag">Próximos Passos</span>
+                            </div>
+                            <div class="template-actions">
+                                <button class="btn-secondary preview-btn">Visualizar</button>
+                                <button class="btn-primary use-template-btn" data-template="project">
+                                    Usar Modelo
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Relatórios Recentes -->
+                <div class="recent-reports">
+                    <div class="section-header">
+                        <h2>Relatórios Recentes</h2>
+                        <div class="view-options">
+                            <button class="view-toggle active" data-view="grid">⏹️</button>
+                            <button class="view-toggle" data-view="list">☰</button>
+                        </div>
+                    </div>
+                    
+                    <div class="reports-grid" id="reportsGrid">
+                        <!-- Relatório 1 -->
+                        <div class="report-card" data-type="executive" data-status="completed">
+                            <div class="report-header">
+                                <div class="report-type executive">
+                                    <div class="type-icon">👔</div>
+                                    <span>Executivo</span>
+                                </div>
+                                <div class="report-actions">
+                                    <button class="btn-icon" title="Compartilhar">📤</button>
+                                    <button class="btn-icon" title="Mais opções">⋯</button>
+                                </div>
+                            </div>
+                            <div class="report-content">
+                                <h4 class="report-title">Análise de Sustentabilidade - Centro SP</h4>
+                                <p class="report-description">
+                                    Relatório executivo sobre indicadores de sustentabilidade e propostas de melhorias.
+                                </p>
+                                <div class="report-meta">
+                                    <span class="report-project">Projeto: Parque Linear</span>
+                                    <span class="report-date">Gerado: 15/01/2024</span>
+                                </div>
+                                <div class="report-stats">
+                                    <div class="stat">
+                                        <span class="stat-value">24</span>
+                                        <span class="stat-label">Páginas</span>
+                                    </div>
+                                    <div class="stat">
+                                        <span class="stat-value">12</span>
+                                        <span class="stat-label">Gráficos</span>
+                                    </div>
+                                    <div class="stat">
+                                        <span class="stat-value">5</span>
+                                        <span class="stat-label">Recomendações</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="report-footer">
+                                <div class="report-status completed">
+                                    <span class="status-dot"></span>
+                                    Concluído
+                                </div>
+                                <div class="report-actions-main">
+                                    <button class="btn-icon" title="Visualizar">👁️</button>
+                                    <button class="btn-icon" title="Download">📥</button>
+                                    <button class="btn-icon" title="Exportar">🔄</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Relatório 2 -->
+                        <div class="report-card" data-type="technical" data-status="completed">
+                            <div class="report-header">
+                                <div class="report-type technical">
+                                    <div class="type-icon">🔧</div>
+                                    <span>Técnico</span>
+                                </div>
+                                <div class="report-actions">
+                                    <button class="btn-icon" title="Compartilhar">📤</button>
+                                    <button class="btn-icon" title="Mais opções">⋯</button>
+                                </div>
+                            </div>
+                            <div class="report-content">
+                                <h4 class="report-title">Análise Técnica - Ilhas de Calor</h4>
+                                <p class="report-description">
+                                    Documentação técnica completa sobre mapeamento térmico e soluções.
+                                </p>
+                                <div class="report-meta">
+                                    <span class="report-project">Análise: Calor Urbano</span>
+                                    <span class="report-date">Gerado: 12/01/2024</span>
+                                </div>
+                                <div class="report-stats">
+                                    <div class="stat">
+                                        <span class="stat-value">42</span>
+                                        <span class="stat-label">Páginas</span>
+                                    </div>
+                                    <div class="stat">
+                                        <span class="stat-value">8</span>
+                                        <span class="stat-label">Mapas</span>
+                                    </div>
+                                    <div class="stat">
+                                        <span class="stat-value">15</span>
+                                        <span class="stat-label">Tabelas</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="report-footer">
+                                <div class="report-status completed">
+                                    <span class="status-dot"></span>
+                                    Concluído
+                                </div>
+                                <div class="report-actions-main">
+                                    <button class="btn-icon" title="Visualizar">👁️</button>
+                                    <button class="btn-icon" title="Download">📥</button>
+                                    <button class="btn-icon" title="Exportar">🔄</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Relatório 3 -->
+                        <div class="report-card" data-type="project" data-status="completed">
+                            <div class="report-header">
+                                <div class="report-type project">
+                                    <div class="type-icon">📋</div>
+                                    <span>Projeto</span>
+                                </div>
+                                <div class="report-actions">
+                                    <button class="btn-icon" title="Compartilhar">📤</button>
+                                    <button class="btn-icon" title="Mais opções">⋯</button>
+                                </div>
+                            </div>
+                            <div class="report-content">
+                                <h4 class="report-title">Relatório Mensal - Corredor Verde</h4>
+                                <p class="report-description">
+                                    Acompanhamento do progresso e métricas do projeto de corredor verde.
+                                </p>
+                                <div class="report-meta">
+                                    <span class="report-project">Projeto: Corredor Verde</span>
+                                    <span class="report-date">Gerado: 10/01/2024</span>
+                                </div>
+                                <div class="report-stats">
+                                    <div class="stat">
+                                        <span class="stat-value">18</span>
+                                        <span class="stat-label">Páginas</span>
+                                    </div>
+                                    <div class="stat">
+                                        <span class="stat-value">65%</span>
+                                        <span class="stat-label">Progresso</span>
+                                    </div>
+                                    <div class="stat">
+                                        <span class="stat-value">7</span>
+                                        <span class="stat-label">Entregas</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="report-footer">
+                                <div class="report-status completed">
+                                    <span class="status-dot"></span>
+                                    Concluído
+                                </div>
+                                <div class="report-actions-main">
+                                    <button class="btn-icon" title="Visualizar">👁️</button>
+                                    <button class="btn-icon" title="Download">📥</button>
+                                    <button class="btn-icon" title="Exportar">🔄</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Relatório 4 -->
+                        <div class="report-card" data-type="sustainability" data-status="generating">
+                            <div class="report-header">
+                                <div class="report-type sustainability">
+                                    <div class="type-icon">♻️</div>
+                                    <span>Sustentabilidade</span>
+                                </div>
+                                <div class="report-actions">
+                                    <button class="btn-icon" title="Compartilhar">📤</button>
+                                    <button class="btn-icon" title="Mais opções">⋯</button>
+                                </div>
+                            </div>
+                            <div class="report-content">
+                                <h4 class="report-title">Avaliação de Impacto Ambiental</h4>
+                                <p class="report-description">
+                                    Análise completa dos impactos ambientais do projeto de mobilidade.
+                                </p>
+                                <div class="report-meta">
+                                    <span class="report-project">Projeto: Ciclovias</span>
+                                    <span class="report-date">Iniciado: 08/01/2024</span>
+                                </div>
+                                <div class="report-stats">
+                                    <div class="stat">
+                                        <span class="stat-value">-</span>
+                                        <span class="stat-label">Páginas</span>
+                                    </div>
+                                    <div class="stat">
+                                        <span class="stat-value">-</span>
+                                        <span class="stat-label">Gráficos</span>
+                                    </div>
+                                    <div class="stat">
+                                        <span class="stat-value">-</span>
+                                        <span class="stat-label">Seções</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="report-footer">
+                                <div class="report-status generating">
+                                    <div class="progress-spinner"></div>
+                                    Gerando... 75%
+                                </div>
+                                <div class="report-actions-main">
+                                    <button class="btn-icon" title="Cancelar">⏹️</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Relatório 5 -->
+                        <div class="report-card" data-type="executive" data-status="draft">
+                            <div class="report-header">
+                                <div class="report-type executive">
+                                    <div class="type-icon">👔</div>
+                                    <span>Executivo</span>
+                                </div>
+                                <div class="report-actions">
+                                    <button class="btn-icon" title="Compartilhar">📤</button>
+                                    <button class="btn-icon" title="Mais opções">⋯</button>
+                                </div>
+                            </div>
+                            <div class="report-content">
+                                <h4 class="report-title">Relatório Trimestral - Projetos</h4>
+                                <p class="report-description">
+                                    Visão geral do portfólio de projetos e desempenho trimestral.
+                                </p>
+                                <div class="report-meta">
+                                    <span class="report-project">Vários Projetos</span>
+                                    <span class="report-date">Rascunho: 05/01/2024</span>
+                                </div>
+                                <div class="report-stats">
+                                    <div class="stat">
+                                        <span class="stat-value">12</span>
+                                        <span class="stat-label">Páginas</span>
+                                    </div>
+                                    <div class="stat">
+                                        <span class="stat-value">6</span>
+                                        <span class="stat-label">Gráficos</span>
+                                    </div>
+                                    <div class="stat">
+                                        <span class="stat-value">3</span>
+                                        <span class="stat-label">Projetos</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="report-footer">
+                                <div class="report-status draft">
+                                    <span class="status-dot"></span>
+                                    Rascunho
+                                </div>
+                                <div class="report-actions-main">
+                                    <button class="btn-icon" title="Editar">✏️</button>
+                                    <button class="btn-icon" title="Finalizar">✅</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Ações em Lote -->
+                <div class="batch-actions">
+                    <div class="batch-header">
+                        <h3>Ações em Lote</h3>
+                        <p>Gerencie múltiplos relatórios de uma vez</p>
+                    </div>
+                    <div class="batch-buttons">
+                        <button class="btn-secondary">
+                            <span class="btn-icon">📥</span>
+                            Download Selecionados
+                        </button>
+                        <button class="btn-secondary">
+                            <span class="btn-icon">📤</span>
+                            Exportar em Lote
+                        </button>
+                        <button class="btn-secondary">
+                            <span class="btn-icon">🗑️</span>
+                            Excluir Selecionados
+                        </button>
+                        <button class="btn-primary">
+                            <span class="btn-icon">🔗</span>
+                            Compartilhar Múltiplos
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Modal Gerar Relatório -->
+    <div id="generateReportModal" class="modal">
+        <div class="modal-content large-modal">
+            <span class="close">&times;</span>
+            <h2>Gerar Novo Relatório</h2>
+            <form id="generateReportForm" class="report-form">
+                <div class="form-group">
+                    <label for="reportTemplate">Modelo de Relatório *</label>
+                    <select id="reportTemplate" required>
+                        <option value="">Selecione um modelo</option>
+                        <option value="executive">Relatório Executivo</option>
+                        <option value="technical">Relatório Técnico</option>
+                        <option value="sustainability">Relatório de Sustentabilidade</option>
+                        <option value="project">Relatório de Projeto</option>
+                        <option value="custom">Personalizado</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="reportSource">Fonte dos Dados *</label>
+                    <select id="reportSource" required>
+                        <option value="">Selecione a fonte</option>
+                        <option value="project">Projeto Específico</option>
+                        <option value="analysis">Análise Específica</option>
+                        <option value="multiple">Múltiplas Fontes</option>
+                        <option value="all">Todos os Dados</option>
+                    </select>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="reportProject">Projeto</label>
+                        <select id="reportProject">
+                            <option value="">Selecione um projeto</option>
+                            <option value="parque_linear">Parque Linear Centro</option>
+                            <option value="corredor_verde">Corredor Verde Norte</option>
+                            <option value="ciclovia">Ciclovia Central</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="reportAnalysis">Análise</label>
+                        <select id="reportAnalysis">
+                            <option value="">Selecione uma análise</option>
+                            <option value="calor_sp">Análise de Calor - SP</option>
+                            <option value="vegetacao_rj">Análise de Vegetação - RJ</option>
+                            <option value="mobilidade_bh">Análise de Mobilidade - BH</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="reportName">Nome do Relatório *</label>
+                    <input type="text" id="reportName" required placeholder="Ex: Relatório Executivo - Projeto X">
+                </div>
+
+                <div class="form-group">
+                    <label for="reportDescription">Descrição</label>
+                    <textarea id="reportDescription" rows="3" placeholder="Descreva o propósito deste relatório..."></textarea>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="reportFormat">Formato de Saída</label>
+                        <select id="reportFormat">
+                            <option value="pdf">PDF</option>
+                            <option value="docx">Word</option>
+                            <option value="html">HTML</option>
+                            <option value="excel">Excel</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="reportLanguage">Idioma</label>
+                        <select id="reportLanguage">
+                            <option value="pt">Português</option>
+                            <option value="en">Inglês</option>
+                            <option value="es">Espanhol</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-actions">
+                    <button type="button" class="btn-secondary" id="cancelReportBtn">Cancelar</button>
+                    <button type="submit" class="btn-primary">Gerar Relatório</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="js/reports.js"></script>
+    <script src="js/auth-manager.js"></script>
+</body>
+</html>

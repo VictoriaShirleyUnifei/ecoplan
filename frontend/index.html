@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>EcoPlan - Planejamento Urbano Sustentável</title>
+
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+
+    <!-- Nosso CSS -->
+    <link rel="stylesheet" href="styles/index.css" />
+  </head>
+  <body>
+    <div class="app-container">
+      <!-- Header -->
+      <header class="header">
+        <div class="header-content">
+          <div class="logo">
+            <span class="logo-icon">🌍</span>
+            <h1>EcoPlan</h1>
+            <span class="beta-tag">BETA</span>
+          </div>
+          <nav class="main-nav">
+            <ul class="nav-list">
+              <li><a href="index.html" class="nav-link">Início</a></li>
+              <li><a href="projects.html" class="nav-link">Projetos</a></li>
+              <li><a href="analysis.html" class="nav-link">Análises</a></li>
+              <li>
+                <a href="reports.html" class="nav-link active">Relatórios</a>
+              </li>
+            </ul>
+          </nav>
+          <div class="user-actions">
+            <button class="btn-login" id="headerLoginBtn">Entrar</button>
+            <button class="btn-register" id="headerRegisterBtn">
+              Cadastrar
+            </button>
+
+            <!-- Estado logado (inicialmente escondido) -->
+            <div class="user-menu" id="userMenu" style="display: none">
+              <!-- <button class="user-avatar" id="userAvatar">
+                <span id="avatarInitials">U</span>
+              </button> -->
+              <!-- <div class="user-dropdown" id="userDropdown">
+                <div class="user-info">
+                  <span id="userName">Usuário</span>
+                  <span id="userEmail">usuario@email.com</span>
+                </div>
+                <div class="dropdown-actions">
+                  <a href="profile.html" class="dropdown-item">
+                    <span class="dropdown-icon">👤</span>
+                    Meu Perfil
+                  </a>
+                  <a href="projects.html" class="dropdown-item">
+                    <span class="dropdown-icon">📋</span>
+                    Meus Projetos
+                  </a>
+                  <a href="settings.html" class="dropdown-item">
+                    <span class="dropdown-icon">⚙️</span>
+                    Configurações
+                  </a>
+                  <div class="dropdown-divider"></div>
+                  <button class="dropdown-item logout-btn" id="logoutBtn">
+                    <span class="dropdown-icon">🚪</span>
+                    Sair
+                  </button>
+                </div>
+              </div> -->
+              <button class="dropdown-item logout-btn" id="logoutBtn">
+                Sair
+              </button>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <!-- Conteúdo Principal -->
+      <div class="main-content">
+        <!-- Sidebar -->
+        <div class="sidebar">
+          <div class="sidebar-header">
+            <h2>Ferramentas de Análise</h2>
+            <p>Desenvolva projetos urbanos sustentáveis</p>
+          </div>
+
+          <!-- Abas de navegação -->
+          <div class="tabs">
+            <button class="tab-button active" data-tab="search">Buscar</button>
+            <button class="tab-button" data-tab="analysis">Análises</button>
+          </div>
+
+          <!-- Conteúdo das abas -->
+          <div class="tab-content">
+            <!-- Aba Busca -->
+            <div id="search-tab" class="tab-pane active">
+              <div class="search-section">
+                <h3>Buscar Localização</h3>
+
+                <div class="search-form">
+                  <div class="form-group">
+                    <label for="searchState">Estado</label>
+                    <select id="searchState">
+                      <option value="">Selecione um estado</option>
+                    </select>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="searchCity">Cidade</label>
+                    <select id="searchCity" disabled>
+                      <option value="">Selecione uma cidade</option>
+                    </select>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="searchNeighborhood">Bairro (Opcional)</label>
+                    <select id="searchNeighborhood" disabled>
+                      <option value="">Selecione um bairro</option>
+                    </select>
+                  </div>
+
+                  <div class="form-actions">
+                    <button id="searchLocationBtn" class="btn-primary" disabled>
+                      Buscar no Mapa
+                    </button>
+                    <button id="saveLocationBtn" class="btn-secondary" disabled>
+                      Salvar Localização
+                    </button>
+                  </div>
+                </div>
+
+                <div class="saved-locations">
+                  <h3>Localizações Salvas</h3>
+                  <div class="search-box">
+                    <input
+                      type="text"
+                      id="filterLocations"
+                      placeholder="Filtrar localizações..."
+                    />
+                  </div>
+                  <div id="savedLocationsList" class="locations-list"></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Aba Análises -->
+            <div id="analysis-tab" class="tab-pane">
+              <div class="analysis-section">
+                <h3>Análises Urbanísticas</h3>
+
+                <div class="analysis-controls">
+                  <div class="form-group">
+                    <label for="analysisType">Tipo de Análise</label>
+                    <select id="analysisType">
+                      <option value="heat">Ilhas de Calor</option>
+                      <option value="vegetation">Áreas Verdes</option>
+                      <option value="sustainability">Sustentabilidade</option>
+                      <option value="demography">Demografia</option>
+                    </select>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="analysisLocation"
+                      >Localização para Análise</label
+                    >
+                    <select id="analysisLocation">
+                      <option value="current">Localização Atual</option>
+                      <option value="saved">Localização Salva</option>
+                    </select>
+                  </div>
+
+                  <button id="runAnalysisBtn" class="btn-primary">
+                    Executar Análise
+                  </button>
+                </div>
+
+                <!-- NOVA SEÇÃO: Lista de Bairros -->
+                <div
+                  class="bairros-section"
+                  id="bairrosSection"
+                  style="display: none"
+                >
+                  <h3>📊 Dados dos Bairros</h3>
+                  <div class="bairros-filters">
+                    <div class="filter-group">
+                      <label for="sortBairros">Ordenar por:</label>
+                      <select id="sortBairros">
+                        <option value="nome">Nome</option>
+                        <option value="surface_temp">
+                          Temperatura Superfície
+                        </option>
+                        <option value="index_vegetacao">
+                          Índice Vegetação
+                        </option>
+                        <option value="temperature_2m">
+                          Temperatura do Ar
+                        </option>
+                      </select>
+                    </div>
+                    <div class="filter-group">
+                      <label for="filterBairros">Filtrar:</label>
+                      <input
+                        type="text"
+                        id="filterBairros"
+                        placeholder="Buscar bairro..."
+                      />
+                    </div>
+                  </div>
+
+                  <div class="bairros-stats">
+                    <div class="stat-card small">
+                      <div class="stat-icon">🔥</div>
+                      <div class="stat-info">
+                        <h3 id="avgTemp">--</h3>
+                        <p>Temp. Média</p>
+                      </div>
+                    </div>
+                    <div class="stat-card small">
+                      <div class="stat-icon">🌿</div>
+                      <div class="stat-info">
+                        <h3 id="avgVegetation">--</h3>
+                        <p>Veg. Média</p>
+                      </div>
+                    </div>
+                    <div class="stat-card small">
+                      <div class="stat-icon">📍</div>
+                      <div class="stat-info">
+                        <h3 id="totalBairros">--</h3>
+                        <p>Bairros</p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="bairros-list" id="bairrosList">
+                    <!-- Lista de bairros será gerada aqui -->
+                  </div>
+                </div>
+
+                <div class="analysis-results">
+                  <h3>Resultados</h3>
+                  <div id="analysisResults" class="results-container">
+                    <p class="placeholder">
+                      Execute uma análise para ver os resultados
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Mapa -->
+        <div id="map" class="map-container"></div>
+      </div>
+    </div>
+
+    <!-- Modal para salvar localização -->
+    <div id="saveLocationModal" class="modal">
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2>Salvar Localização</h2>
+        <form id="saveLocationForm">
+          <div class="form-group">
+            <label for="locationName">Nome da Localização</label>
+            <input type="text" id="locationName" required />
+          </div>
+          <div class="form-group">
+            <label for="locationType">Tipo</label>
+            <select id="locationType" required>
+              <option value="city">Cidade</option>
+              <option value="neighborhood">Bairro</option>
+              <option value="point">Ponto de Interesse</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="locationDescription">Descrição (Opcional)</label>
+            <textarea
+              id="locationDescription"
+              rows="3"
+              placeholder="Adicione uma descrição..."
+            ></textarea>
+          </div>
+          <div class="form-actions">
+            <button type="submit" class="btn-primary">
+              Salvar Localização
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- Loading Overlay -->
+    <div id="loadingOverlay" class="loading-overlay">
+      <div class="loading-spinner"></div>
+      <p class="loading-text">Carregando...</p>
+    </div>
+
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script src="https://unpkg.com/leaflet.heat/dist/leaflet-heat.js"></script>
+
+    <!-- Nosso JS -->
+
+    <script src="js/api-service.js"></script>
+    <script src="js/json-data-manager.js"></script>
+    <script src="js/gee-data-manager.js"></script>
+    <script src="js/map-manager.js"></script>
+    <script src="js/ui-manager.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/auth-manager.js"></script>
+  </body>
+</html>

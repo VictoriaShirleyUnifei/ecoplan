@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - EcoPlan</title>
+    
+    <link rel="stylesheet" href="styles/index.css">
+    <link rel="stylesheet" href="styles/login.css">
+</head>
+<body>
+    <div class="login-container">
+        <!-- Background com elementos urbanos -->
+        <div class="login-background">
+            <div class="background-pattern"></div>
+            <div class="floating-elements">
+                <div class="floating-element building">🏢</div>
+                <div class="floating-element park">🌳</div>
+                <div class="floating-element transport">🚇</div>
+                <div class="floating-element sustainability">♻️</div>
+            </div>
+        </div>
+
+        <!-- Container Principal -->
+        <div class="login-content">
+            <!-- Logo e Branding -->
+            <div class="login-header">
+                <div class="logo">
+                    <span class="logo-icon">🌍</span>
+                    <h1>EcoPlan</h1>
+                    <span class="beta-tag">BETA</span>
+                </div>
+                <p class="login-subtitle">Planejamento Urbano Sustentável</p>
+            </div>
+
+            <!-- Card de Login Compacto -->
+            <div class="login-card">
+                <div class="card-header">
+                    <h2>Bem-vindo de volta</h2>
+                    <p>Entre na sua conta para continuar</p>
+                </div>
+
+                <form class="login-form" id="loginForm">
+                    <!-- Email -->
+                    <div class="form-group">
+                        <label for="email">E-mail</label>
+                        <div class="input-with-icon">
+                            <span class="input-icon">📧</span>
+                            <input 
+                                type="email" 
+                                id="email" 
+                                name="email" 
+                                placeholder="seu@email.com"
+                                required
+                            >
+                        </div>
+                    </div>
+
+                    <!-- Senha -->
+                    <div class="form-group">
+                        <div class="label-row">
+                            <label for="password">Senha</label>
+                        </div>
+                        <div class="input-with-icon">
+                            <span class="input-icon">🔒</span>
+                            <input 
+                                type="password" 
+                                id="password" 
+                                name="password" 
+                                placeholder="Sua senha"
+                                required
+                            >
+                            <button type="button" class="toggle-password" id="togglePassword">
+                                👁️
+                            </button>
+                        </div>
+                        <a href="#forgot-password" class="forgot-password">Esqueceu a senha?</a>
+                    </div>
+
+                    <div class="form-options">
+                        <label class="checkbox-container">
+                        <input type="checkbox" id="rememberMe" name="rememberMe" />
+                        <span class="checkmark"></span>
+                        Lembrar de mim
+                        </label>
+                    </div>
+                       
+                    <!-- Botão de Login -->
+                    <button type="submit" class="btn-login-submit" id="loginSubmit">
+                        <span class="btn-text">Entrar</span>
+                        <span class="btn-loading" style="display: none;">
+                            <div class="loading-spinner"></div>
+                            Entrando...
+                        </span>
+                    </button>
+                </form>
+
+                <!-- Cadastro -->
+                <div class="login-footer">
+                    <p>Não tem uma conta? <a href="register.html" class="signup-link">Cadastre-se</a></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal Esqueci Senha -->
+        <div id="forgotPasswordModal" class="modal">
+            <div class="modal-content compact-modal">
+                <span class="close">&times;</span>
+                <h2>Recuperar Senha</h2>
+                <form id="forgotPasswordForm" class="forgot-password-form">
+                    <div class="form-group">
+                        <label for="recoveryEmail">E-mail</label>
+                        <input 
+                            type="email" 
+                            id="recoveryEmail" 
+                            placeholder="seu@email.com"
+                            required
+                        >
+                    </div>
+                    <p class="recovery-info">
+                        Enviaremos um link para redefinir sua senha no e-mail informado.
+                    </p>
+                    <div class="form-actions">
+                        <button type="button" class="btn-secondary" id="cancelRecovery">Cancelar</button>
+                        <button type="submit" class="btn-primary">Enviar Link</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/login.js"></script>
+    <script src="js/auth-manager.js"></script>
+</body>
+</html>

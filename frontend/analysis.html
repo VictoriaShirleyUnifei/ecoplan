@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Análises - EcoPlan</title>
+    
+    <link rel="stylesheet" href="styles/index.css">
+    <link rel="stylesheet" href="styles/analysis.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-content">
+                <div class="logo">
+                    <span class="logo-icon">🌍</span>
+                    <h1>EcoPlan</h1>
+                    <span class="beta-tag">BETA</span>
+                </div>
+                <nav class="main-nav">
+                    <ul class="nav-list">
+                        <li><a href="index.html" class="nav-link">Início</a></li>
+                        <li><a href="projects.html" class="nav-link">Projetos</a></li>
+                        <li><a href="analysis.html" class="nav-link">Análises</a></li>
+                        <li><a href="reports.html" class="nav-link active">Relatórios</a></li>
+                    </ul>
+                </nav>
+                <div class="user-actions">
+                    <button class="btn-login" id="headerLoginBtn">Entrar</button>
+                    <button class="btn-register" id="headerRegisterBtn">
+                    Cadastrar
+                    </button>
+
+                    <!-- Estado logado (inicialmente escondido) -->
+                    <div class="user-menu" id="userMenu" style="display: none">
+                    <!-- <button class="user-avatar" id="userAvatar">
+                        <span id="avatarInitials">U</span>
+                    </button> -->
+                    <!-- <div class="user-dropdown" id="userDropdown">
+                        <div class="user-info">
+                        <span id="userName">Usuário</span>
+                        <span id="userEmail">usuario@email.com</span>
+                        </div>
+                        <div class="dropdown-actions">
+                        <a href="profile.html" class="dropdown-item">
+                            <span class="dropdown-icon">👤</span>
+                            Meu Perfil
+                        </a>
+                        <a href="projects.html" class="dropdown-item">
+                            <span class="dropdown-icon">📋</span>
+                            Meus Projetos
+                        </a>
+                        <a href="settings.html" class="dropdown-item">
+                            <span class="dropdown-icon">⚙️</span>
+                            Configurações
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <button class="dropdown-item logout-btn" id="logoutBtn">
+                            <span class="dropdown-icon">🚪</span>
+                            Sair
+                        </button>
+                        </div>
+                    </div> -->
+                    <button class="dropdown-item logout-btn" id="logoutBtn">Sair</button>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Conteúdo Principal -->
+        <main class="analysis-main">
+            <div class="analysis-container">
+                <!-- Header -->
+                <div class="page-header">
+                    <div class="header-content">
+                        <h1>Análises Urbanísticas</h1>
+                        <p>Ferramentas avançadas para análise e planejamento urbano sustentável</p>
+                    </div>
+                    <button class="btn-primary" id="newAnalysisBtn">
+                        <span class="btn-icon">+</span>
+                        Nova Análise
+                    </button>
+                </div>
+
+                <!-- Métricas Rápidas -->
+                <div class="analysis-metrics">
+                    <div class="metric-card">
+                        <div class="metric-icon">🌡️</div>
+                        <div class="metric-info">
+                            <h3>24</h3>
+                            <p>Análises de Calor</p>
+                            <span class="metric-trend positive">+12%</span>
+                        </div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-icon">🌿</div>
+                        <div class="metric-info">
+                            <h3>18</h3>
+                            <p>Análises de Vegetação</p>
+                            <span class="metric-trend positive">+8%</span>
+                        </div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-icon">📊</div>
+                        <div class="metric-info">
+                            <h3>42</h3>
+                            <p>Análises Concluídas</p>
+                            <span class="metric-trend positive">+15%</span>
+                        </div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-icon">⏱️</div>
+                        <div class="metric-info">
+                            <h3>2.3h</h3>
+                            <p>Tempo Médio</p>
+                            <span class="metric-trend negative">-5%</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Ferramentas de Análise -->
+                <div class="analysis-tools">
+                    <h2>Ferramentas de Análise</h2>
+                    <div class="tools-grid">
+                        <!-- Ferramenta 1 -->
+                        <div class="tool-card" data-tool="heat">
+                            <div class="tool-header">
+                                <div class="tool-icon">🔥</div>
+                                <h3>Ilhas de Calor</h3>
+                            </div>
+                            <p class="tool-description">
+                                Identifique áreas urbanas com temperaturas elevadas e proponha soluções de mitigação.
+                            </p>
+                            <div class="tool-features">
+                                <span class="feature-tag">Temperatura Superficial</span>
+                                <span class="feature-tag">Mapa de Calor</span>
+                                <span class="feature-tag">Recomendações</span>
+                            </div>
+                            <button class="btn-primary tool-action" data-tool="heat">
+                                Executar Análise
+                            </button>
+                        </div>
+
+                        <!-- Ferramenta 2 -->
+                        <div class="tool-card" data-tool="vegetation">
+                            <div class="tool-header">
+                                <div class="tool-icon">🌿</div>
+                                <h3>Áreas Verdes</h3>
+                            </div>
+                            <p class="tool-description">
+                                Analise cobertura vegetal, qualidade do verde e identifique oportunidades de expansão.
+                            </p>
+                            <div class="tool-features">
+                                <span class="feature-tag">NDVI</span>
+                                <span class="feature-tag">Cobertura Vegetal</span>
+                                <span class="feature-tag">Conectividade</span>
+                            </div>
+                            <button class="btn-primary tool-action" data-tool="vegetation">
+                                Executar Análise
+                            </button>
+                        </div>
+
+                        <!-- Ferramenta 3 -->
+                        <div class="tool-card" data-tool="sustainability">
+                            <div class="tool-header">
+                                <div class="tool-icon">♻️</div>
+                                <h3>Sustentabilidade</h3>
+                            </div>
+                            <p class="tool-description">
+                                Avalie indicadores de sustentabilidade urbana e propostas de melhorias ambientais.
+                            </p>
+                            <div class="tool-features">
+                                <span class="feature-tag">Pegada Ecológica</span>
+                                <span class="feature-tag">Eficiência Energética</span>
+                                <span class="feature-tag">Mobilidade</span>
+                            </div>
+                            <button class="btn-primary tool-action" data-tool="sustainability">
+                                Executar Análise
+                            </button>
+                        </div>
+
+                        <!-- Ferramenta 4 -->
+                        <div class="tool-card" data-tool="demography">
+                            <div class="tool-header">
+                                <div class="tool-icon">👥</div>
+                                <h3>Demografia</h3>
+                            </div>
+                            <p class="tool-description">
+                                Estude distribuição populacional, densidade e características socioeconômicas.
+                            </p>
+                            <div class="tool-features">
+                                <span class="feature-tag">Densidade</span>
+                                <span class="feature-tag">Crescimento</span>
+                                <span class="feature-tag">Indicadores</span>
+                            </div>
+                            <button class="btn-primary tool-action" data-tool="demography">
+                                Executar Análise
+                            </button>
+                        </div>
+
+                        <!-- Ferramenta 5 -->
+                        <div class="tool-card" data-tool="mobility">
+                            <div class="tool-header">
+                                <div class="tool-icon">🚗</div>
+                                <h3>Mobilidade</h3>
+                            </div>
+                            <p class="tool-description">
+                                Analise fluxos de tráfego, acessibilidade e propostas de transporte sustentável.
+                            </p>
+                            <div class="tool-features">
+                                <span class="feature-tag">Acessibilidade</span>
+                                <span class="feature-tag">Transporte Público</span>
+                                <span class="feature-tag">Tráfego</span>
+                            </div>
+                            <button class="btn-primary tool-action" data-tool="mobility">
+                                Executar Análise
+                            </button>
+                        </div>
+
+                        <!-- Ferramenta 6 -->
+                        <div class="tool-card" data-tool="hydrology">
+                            <div class="tool-header">
+                                <div class="tool-icon">💧</div>
+                                <h3>Hidrologia Urbana</h3>
+                            </div>
+                            <p class="tool-description">
+                                Estude drenagem, áreas de risco de inundação e soluções de infraestrutura verde.
+                            </p>
+                            <div class="tool-features">
+                                <span class="feature-tag">Drenagem</span>
+                                <span class="feature-tag">Inundações</span>
+                                <span class="feature-tag">Infraestrutura Verde</span>
+                            </div>
+                            <button class="btn-primary tool-action" data-tool="hydrology">
+                                Executar Análise
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Análises Recentes -->
+                <div class="recent-analysis">
+                    <div class="section-header">
+                        <h2>Análises Recentes</h2>
+                        <a href="#" class="view-all-link">Ver todas →</a>
+                    </div>
+                    
+                    <div class="analysis-list">
+                        <!-- Análise 1 -->
+                        <div class="analysis-item">
+                            <div class="analysis-main">
+                                <div class="analysis-type heat">
+                                    <div class="type-icon">🔥</div>
+                                    <span>Ilhas de Calor</span>
+                                </div>
+                                <div class="analysis-info">
+                                    <h4>Centro de São Paulo - Análise Térmica</h4>
+                                    <p>Identificação de áreas críticas e propostas de mitigação</p>
+                                    <div class="analysis-meta">
+                                        <span class="location">📍 São Paulo, SP</span>
+                                        <span class="date">📅 15 Jan 2024</span>
+                                        <span class="duration">⏱️ 45 min</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="analysis-actions">
+                                <div class="analysis-status completed">
+                                    Concluída
+                                </div>
+                                <button class="btn-icon" title="Ver resultados">👁️</button>
+                                <button class="btn-icon" title="Exportar">📤</button>
+                                <button class="btn-icon" title="Mais opções">⋯</button>
+                            </div>
+                        </div>
+
+                        <!-- Análise 2 -->
+                        <div class="analysis-item">
+                            <div class="analysis-main">
+                                <div class="analysis-type vegetation">
+                                    <div class="type-icon">🌿</div>
+                                    <span>Áreas Verdes</span>
+                                </div>
+                                <div class="analysis-info">
+                                    <h4>Zona Norte - Cobertura Vegetal</h4>
+                                    <p>Análise de NDVI e oportunidades de expansão verde</p>
+                                    <div class="analysis-meta">
+                                        <span class="location">📍 Rio de Janeiro, RJ</span>
+                                        <span class="date">📅 12 Jan 2024</span>
+                                        <span class="duration">⏱️ 1h 20min</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="analysis-actions">
+                                <div class="analysis-status completed">
+                                    Concluída
+                                </div>
+                                <button class="btn-icon" title="Ver resultados">👁️</button>
+                                <button class="btn-icon" title="Exportar">📤</button>
+                                <button class="btn-icon" title="Mais opções">⋯</button>
+                            </div>
+                        </div>
+
+                        <!-- Análise 3 -->
+                        <div class="analysis-item">
+                            <div class="analysis-main">
+                                <div class="analysis-type mobility">
+                                    <div class="type-icon">🚗</div>
+                                    <span>Mobilidade</span>
+                                </div>
+                                <div class="analysis-info">
+                                    <h4>Corredor Central - Acessibilidade</h4>
+                                    <p>Análise de fluxos e proposta de corredor de transporte</p>
+                                    <div class="analysis-meta">
+                                        <span class="location">📍 Belo Horizonte, MG</span>
+                                        <span class="date">📅 10 Jan 2024</span>
+                                        <span class="duration">⏱️ 2h 15min</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="analysis-actions">
+                                <div class="analysis-status processing">
+                                    Processando
+                                </div>
+                                <div class="progress-indicator">
+                                    <div class="progress-spinner"></div>
+                                    <span>65%</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Análise 4 -->
+                        <div class="analysis-item">
+                            <div class="analysis-main">
+                                <div class="analysis-type sustainability">
+                                    <div class="type-icon">♻️</div>
+                                    <span>Sustentabilidade</span>
+                                </div>
+                                <div class="analysis-info">
+                                    <h4>Bairro Sustentável - Indicadores</h4>
+                                    <p>Avaliação de pegada ecológica e eficiência energética</p>
+                                    <div class="analysis-meta">
+                                        <span class="location">📍 Curitiba, PR</span>
+                                        <span class="date">📅 08 Jan 2024</span>
+                                        <span class="duration">⏱️ 1h 45min</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="analysis-actions">
+                                <div class="analysis-status completed">
+                                    Concluída
+                                </div>
+                                <button class="btn-icon" title="Ver resultados">👁️</button>
+                                <button class="btn-icon" title="Exportar">📤</button>
+                                <button class="btn-icon" title="Mais opções">⋯</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Insights e Recomendações -->
+                <div class="analysis-insights">
+                    <h2>Insights e Recomendações</h2>
+                    <div class="insights-grid">
+                        <div class="insight-card critical">
+                            <div class="insight-header">
+                                <div class="insight-icon">⚠️</div>
+                                <h4>Área Crítica Identificada</h4>
+                            </div>
+                            <p>Centro de São Paulo apresenta temperaturas 4.2°C acima da média regional</p>
+                            <div class="insight-actions">
+                                <button class="btn-secondary">Ver Detalhes</button>
+                                <button class="btn-primary">Criar Projeto</button>
+                            </div>
+                        </div>
+
+                        <div class="insight-card opportunity">
+                            <div class="insight-header">
+                                <div class="insight-icon">💡</div>
+                                <h4>Oportunidade de Expansão</h4>
+                            </div>
+                            <p>Zona Norte do RJ tem potencial para 35% de aumento em áreas verdes</p>
+                            <div class="insight-actions">
+                                <button class="btn-secondary">Ver Análise</button>
+                                <button class="btn-primary">Planejar Intervenção</button>
+                            </div>
+                        </div>
+
+                        <div class="insight-card recommendation">
+                            <div class="insight-header">
+                                <div class="insight-icon">📋</div>
+                                <h4>Recomendação Prioritária</h4>
+                            </div>
+                            <p>Implementar corredor verde pode reduzir temperatura em até 2.8°C</p>
+                            <div class="insight-actions">
+                                <button class="btn-secondary">Estudo de Viabilidade</button>
+                                <button class="btn-primary">Aplicar Recomendação</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Modal Nova Análise -->
+    <div id="newAnalysisModal" class="modal">
+        <div class="modal-content large-modal">
+            <span class="close">&times;</span>
+            <h2>Nova Análise</h2>
+            <form id="newAnalysisForm" class="analysis-form">
+                <div class="form-group">
+                    <label for="analysisType">Tipo de Análise *</label>
+                    <select id="analysisType" required>
+                        <option value="">Selecione o tipo</option>
+                        <option value="heat">Ilhas de Calor</option>
+                        <option value="vegetation">Áreas Verdes</option>
+                        <option value="sustainability">Sustentabilidade</option>
+                        <option value="demography">Demografia</option>
+                        <option value="mobility">Mobilidade</option>
+                        <option value="hydrology">Hidrologia Urbana</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="analysisArea">Área de Estudo *</label>
+                    <div class="area-selection">
+                        <select id="areaType">
+                            <option value="saved">Localização Salva</option>
+                            <option value="custom">Área Personalizada</option>
+                            <option value="current">Localização Atual</option>
+                        </select>
+                        <select id="savedLocation" required>
+                            <option value="">Selecione uma localização</option>
+                            <option value="sp_centro">Centro - São Paulo, SP</option>
+                            <option value="rj_zona_norte">Zona Norte - Rio de Janeiro, RJ</option>
+                            <option value="bh_centro">Centro - Belo Horizonte, MG</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="analysisName">Nome da Análise *</label>
+                    <input type="text" id="analysisName" required placeholder="Ex: Análise de Calor - Centro SP">
+                </div>
+
+                <div class="form-group">
+                    <label for="analysisDescription">Descrição</label>
+                    <textarea id="analysisDescription" rows="3" placeholder="Descreva os objetivos desta análise..."></textarea>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="analysisPriority">Prioridade</label>
+                        <select id="analysisPriority">
+                            <option value="low">Baixa</option>
+                            <option value="medium" selected>Média</option>
+                            <option value="high">Alta</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="analysisTags">Tags</label>
+                        <input type="text" id="analysisTags" placeholder="Ex: calor-urbano, vegetação, sustentabilidade">
+                    </div>
+                </div>
+
+                <div class="form-actions">
+                    <button type="button" class="btn-secondary" id="cancelAnalysisBtn">Cancelar</button>
+                    <button type="submit" class="btn-primary">Iniciar Análise</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="js/analysis.js"></script>
+    <script src="js/auth-manager.js"></script>
+</body>
+</html>

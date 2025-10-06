@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projetos - EcoPlan</title>
+    
+    <!-- Mesmo CSS do main -->
+    <link rel="stylesheet" href="styles/index.css">
+    
+    <!-- CSS específico para Projects -->
+    <link rel="stylesheet" href="styles/projects.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Header Igual ao Main -->
+        <header class="header">
+            <div class="header-content">
+                <div class="logo">
+                    <span class="logo-icon">🌍</span>
+                    <h1>EcoPlan</h1>
+                    <span class="beta-tag">BETA</span>
+                </div>
+                <nav class="main-nav">
+                    <ul class="nav-list">
+                        <ul class="nav-list">
+                            <li><a href="index.html" class="nav-link">Início</a></li>
+                            <li><a href="projects.html" class="nav-link">Projetos</a></li>
+                            <li><a href="analysis.html" class="nav-link">Análises</a></li>
+                            <li><a href="reports.html" class="nav-link active">Relatórios</a></li>
+                        </ul>
+                    </ul>
+                </nav>
+                <div class="user-actions">
+            <button class="btn-login" id="headerLoginBtn">Entrar</button>
+            <button class="btn-register" id="headerRegisterBtn">
+              Cadastrar
+            </button>
+
+            <!-- Estado logado (inicialmente escondido) -->
+            <div class="user-menu" id="userMenu" style="display: none">
+              <!-- <button class="user-avatar" id="userAvatar">
+                <span id="avatarInitials">U</span>
+              </button> -->
+              <!-- <div class="user-dropdown" id="userDropdown">
+                <div class="user-info">
+                  <span id="userName">Usuário</span>
+                  <span id="userEmail">usuario@email.com</span>
+                </div>
+                <div class="dropdown-actions">
+                  <a href="profile.html" class="dropdown-item">
+                    <span class="dropdown-icon">👤</span>
+                    Meu Perfil
+                  </a>
+                  <a href="projects.html" class="dropdown-item">
+                    <span class="dropdown-icon">📋</span>
+                    Meus Projetos
+                  </a>
+                  <a href="settings.html" class="dropdown-item">
+                    <span class="dropdown-icon">⚙️</span>
+                    Configurações
+                  </a>
+                  <div class="dropdown-divider"></div>
+                  <button class="dropdown-item logout-btn" id="logoutBtn">
+                    <span class="dropdown-icon">🚪</span>
+                    Sair
+                  </button>
+                </div>
+              </div> -->
+               <button class="dropdown-item logout-btn" id="logoutBtn">Sair</button>
+            </div>
+          </div>
+        </header>
+
+        <!-- Conteúdo Principal da Tela de Projects -->
+        <main class="projects-main">
+            <div class="projects-container">
+                <!-- Header da Página de Projects -->
+                <div class="page-header">
+                    <div class="header-content" style="display: flex; flex-direction: column;">
+                        <h1>Meus Projetos</h1>
+                        <p>Gerencie e acompanhe todos os seus projetos de planejamento urbano</p>
+                    </div>
+                    <button class="btn-primary btn-new-project" id="newProjectBtn">
+                        <span class="btn-icon">+</span>
+                        Novo Projeto
+                    </button>
+                </div>
+
+                <!-- Estatísticas Rápidas -->
+                <div class="projects-stats">
+                    <div class="stat-card">
+                        <div class="stat-icon">📊</div>
+                        <div class="stat-info">
+                            <h3>12</h3>
+                            <p>Projetos Ativos</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">✅</div>
+                        <div class="stat-info">
+                            <h3>8</h3>
+                            <p>Concluídos</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">⏳</div>
+                        <div class="stat-info">
+                            <h3>4</h3>
+                            <p>Em Planejamento</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">👥</div>
+                        <div class="stat-info">
+                            <h3>3</h3>
+                            <p>Colaboradores</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Barra de Filtros e Busca -->
+                <div class="projects-toolbar">
+                    <div class="filters-section">
+                        <div class="filter-group">
+                            <label for="statusFilter">Status</label>
+                            <select id="statusFilter">
+                                <option value="all">Todos os Status</option>
+                                <option value="active">Em Andamento</option>
+                                <option value="planned">Planejado</option>
+                                <option value="completed">Concluído</option>
+                                <option value="paused">Pausado</option>
+                            </select>
+                        </div>
+                        <div class="filter-group">
+                            <label for="typeFilter">Tipo</label>
+                            <select id="typeFilter">
+                                <option value="all">Todos os Tipos</option>
+                                <option value="urban">Plano Urbanístico</option>
+                                <option value="green">Áreas Verdes</option>
+                                <option value="mobility">Mobilidade</option>
+                                <option value="sustainability">Sustentabilidade</option>
+                            </select>
+                        </div>
+                        <div class="filter-group">
+                            <label for="dateFilter">Data</label>
+                            <select id="dateFilter">
+                                <option value="all">Qualquer Data</option>
+                                <option value="week">Esta Semana</option>
+                                <option value="month">Este Mês</option>
+                                <option value="quarter">Este Trimestre</option>
+                                <option value="year">Este Ano</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="search-section">
+                        <div class="search-box">
+                            <input type="text" id="projectsSearch" placeholder="Buscar projetos...">
+                            <span class="search-icon">🔍</span>
+                        </div>
+                        <button class="btn-secondary" id="filterToggle">
+                            <span class="btn-icon">⚙️</span>
+                            Filtros
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Lista de Projetos -->
+                <div class="projects-grid" id="projectsGrid">
+                    <!-- Projeto 1 -->
+                    <div class="project-card" data-status="active" data-type="urban">
+                        <div class="project-header">
+                            <h3 class="project-title">Parque Linear Centro</h3>
+                            <div class="project-actions">
+                                <button class="btn-icon" title="Editar">✏️</button>
+                                <button class="btn-icon" title="Compartilhar">📤</button>
+                                <button class="btn-icon" title="Mais opções">⋯</button>
+                            </div>
+                        </div>
+                        <p class="project-description">
+                            Projeto de revitalização urbana com corredor verde conectando 
+                            áreas centrais da cidade.
+                        </p>
+                        <div class="project-meta">
+                            <span class="project-location">📍 São Paulo, SP</span>
+                            <span class="project-date">📅 Iniciado: 15/01/2024</span>
+                        </div>
+                        <div class="project-progress">
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 65%"></div>
+                            </div>
+                            <span class="progress-text">65% concluído</span>
+                        </div>
+                        <div class="project-footer">
+                            <div class="project-status active">
+                                <span class="status-dot"></span>
+                                Em Andamento
+                            </div>
+                            <div class="project-collaborators">
+                                <div class="avatar-group">
+                                    <div class="avatar">JS</div>
+                                    <div class="avatar">MA</div>
+                                    <div class="avatar">+2</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Projeto 2 -->
+                    <div class="project-card" data-status="planned" data-type="green">
+                        <div class="project-header">
+                            <h3 class="project-title">Corredor Verde Norte</h3>
+                            <div class="project-actions">
+                                <button class="btn-icon" title="Editar">✏️</button>
+                                <button class="btn-icon" title="Compartilhar">📤</button>
+                                <button class="btn-icon" title="Mais opções">⋯</button>
+                            </div>
+                        </div>
+                        <p class="project-description">
+                            Conectividade de áreas verdes na zona norte com foco em 
+                            biodiversidade e recreação.
+                        </p>
+                        <div class="project-meta">
+                            <span class="project-location">📍 Rio de Janeiro, RJ</span>
+                            <span class="project-date">📅 Planejado: 01/03/2024</span>
+                        </div>
+                        <div class="project-progress">
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 20%"></div>
+                            </div>
+                            <span class="progress-text">20% concluído</span>
+                        </div>
+                        <div class="project-footer">
+                            <div class="project-status planned">
+                                <span class="status-dot"></span>
+                                Planejado
+                            </div>
+                            <div class="project-collaborators">
+                                <div class="avatar-group">
+                                    <div class="avatar">AC</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Projeto 3 -->
+                    <div class="project-card" data-status="completed" data-type="mobility">
+                        <div class="project-header">
+                            <h3 class="project-title">Ciclovia Central</h3>
+                            <div class="project-actions">
+                                <button class="btn-icon" title="Editar">✏️</button>
+                                <button class="btn-icon" title="Compartilhar">📤</button>
+                                <button class="btn-icon" title="Mais opções">⋯</button>
+                            </div>
+                        </div>
+                        <p class="project-description">
+                            Rede de ciclovias integradas ao transporte público no centro 
+                            expandido.
+                        </p>
+                        <div class="project-meta">
+                            <span class="project-location">📍 Belo Horizonte, MG</span>
+                            <span class="project-date">📅 Concluído: 10/12/2023</span>
+                        </div>
+                        <div class="project-progress">
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 100%"></div>
+                            </div>
+                            <span class="progress-text">100% concluído</span>
+                        </div>
+                        <div class="project-footer">
+                            <div class="project-status completed">
+                                <span class="status-dot"></span>
+                                Concluído
+                            </div>
+                            <div class="project-collaborators">
+                                <div class="avatar-group">
+                                    <div class="avatar">RM</div>
+                                    <div class="avatar">LP</div>
+                                    <div class="avatar">TC</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Projeto 4 -->
+                    <div class="project-card" data-status="active" data-type="sustainability">
+                        <div class="project-header">
+                            <h3 class="project-title">Telhados Verdes Municipais</h3>
+                            <div class="project-actions">
+                                <button class="btn-icon" title="Editar">✏️</button>
+                                <button class="btn-icon" title="Compartilhar">📤</button>
+                                <button class="btn-icon" title="Mais opções">⋯</button>
+                            </div>
+                        </div>
+                        <p class="project-description">
+                            Implementação de telhados verdes em edifícios públicos para 
+                            redução de ilhas de calor.
+                        </p>
+                        <div class="project-meta">
+                            <span class="project-location">📍 Curitiba, PR</span>
+                            <span class="project-date">📅 Iniciado: 20/02/2024</span>
+                        </div>
+                        <div class="project-progress">
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 45%"></div>
+                            </div>
+                            <span class="progress-text">45% concluído</span>
+                        </div>
+                        <div class="project-footer">
+                            <div class="project-status active">
+                                <span class="status-dot"></span>
+                                Em Andamento
+                            </div>
+                            <div class="project-collaborators">
+                                <div class="avatar-group">
+                                    <div class="avatar">FG</div>
+                                    <div class="avatar">DS</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Projeto 5 -->
+                    <div class="project-card" data-status="paused" data-type="urban">
+                        <div class="project-header">
+                            <h3 class="project-title">Revitalização da Orla</h3>
+                            <div class="project-actions">
+                                <button class="btn-icon" title="Editar">✏️</button>
+                                <button class="btn-icon" title="Compartilhar">📤</button>
+                                <button class="btn-icon" title="Mais opções">⋯</button>
+                            </div>
+                        </div>
+                        <p class="project-description">
+                            Requalificação da área de orla marítima com acessibilidade 
+                            e sustentabilidade.
+                        </p>
+                        <div class="project-meta">
+                            <span class="project-location">📍 Florianópolis, SC</span>
+                            <span class="project-date">📅 Pausado: 05/01/2024</span>
+                        </div>
+                        <div class="project-progress">
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 30%"></div>
+                            </div>
+                            <span class="progress-text">30% concluído</span>
+                        </div>
+                        <div class="project-footer">
+                            <div class="project-status paused">
+                                <span class="status-dot"></span>
+                                Pausado
+                            </div>
+                            <div class="project-collaborators">
+                                <div class="avatar-group">
+                                    <div class="avatar">MP</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card de Novo Projeto -->
+                    <div class="project-card new-project-card" id="addProjectCard">
+                        <div class="new-project-content">
+                            <div class="add-icon">+</div>
+                            <h3>Novo Projeto</h3>
+                            <p>Crie um novo projeto de planejamento urbano</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Paginação -->
+                <div class="projects-pagination">
+                    <button class="pagination-btn" disabled>
+                        ← Anterior
+                    </button>
+                    <div class="pagination-pages">
+                        <button class="page-btn active">1</button>
+                        <button class="page-btn">2</button>
+                        <button class="page-btn">3</button>
+                        <span class="page-dots">...</span>
+                    </div>
+                    <button class="pagination-btn">
+                        Próxima →
+                    </button>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Modal de Novo Projeto -->
+    <div id="newProjectModal" class="modal">
+        <div class="modal-content large-modal">
+            <span class="close">&times;</span>
+            <h2>Criar Novo Projeto</h2>
+            <form id="newProjectForm" class="project-form">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="projectName">Nome do Projeto *</label>
+                        <input type="text" id="projectName" required placeholder="Ex: Parque Linear Centro">
+                    </div>
+                    <div class="form-group">
+                        <label for="projectType">Tipo de Projeto *</label>
+                        <select id="projectType" required>
+                            <option value="">Selecione o tipo</option>
+                            <option value="urban">Plano Urbanístico</option>
+                            <option value="green">Áreas Verdes</option>
+                            <option value="mobility">Mobilidade</option>
+                            <option value="sustainability">Sustentabilidade</option>
+                            <option value="housing">Habitação</option>
+                            <option value="infrastructure">Infraestrutura</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="projectDescription">Descrição do Projeto</label>
+                    <textarea id="projectDescription" rows="4" placeholder="Descreva os objetivos e escopo do projeto..."></textarea>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="projectLocation">Localização</label>
+                        <input type="text" id="projectLocation" placeholder="Cidade, Estado">
+                    </div>
+                    <div class="form-group">
+                        <label for="projectDeadline">Prazo Estimado</label>
+                        <input type="date" id="projectDeadline">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="projectTags">Tags (separadas por vírgula)</label>
+                    <input type="text" id="projectTags" placeholder="Ex: sustentabilidade, áreas-verdes, mobilidade">
+                </div>
+
+                <div class="form-actions">
+                    <button type="button" class="btn-secondary" id="cancelProjectBtn">Cancelar</button>
+                    <button type="submit" class="btn-primary">Criar Projeto</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/projectService.js"></script>
+    <script src="js/projectManager.js"></script>
+    <script src="js/projects.js"></script>
+    <script src="js/auth-manager.js"></script>
+</body>
+</html>
