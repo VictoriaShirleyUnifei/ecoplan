@@ -1,0 +1,62 @@
+[
+  {
+    "nome": "anhumas",
+    "surface_temp": 29.631103768881644,
+    "index_vegetacao": 0.5127317651389547,
+    "temperature_2m": 20.996154120828304
+  },
+  {
+    "nome": "avenida",
+    "surface_temp": 31.200608979059194,
+    "index_vegetacao": 0.3320633113080949,
+    "temperature_2m": 21.532282030636907
+  },
+  {
+    "nome": "açude",
+    "surface_temp": 32.03640964796068,
+    "index_vegetacao": 0.3999102146575917,
+    "temperature_2m": 21.532282030636907
+  },
+  {
+    "nome": "bairro das nações",
+    "surface_temp": 30.47789527013337,
+    "index_vegetacao": 0.47072099586249194,
+    "temperature_2m": 21.532282030636907
+  },
+  {
+    "nome": "boa vista",
+    "surface_temp": 32.75319390127143,
+    "index_vegetacao": 0.26279668251730137,
+    "temperature_2m": 21.532282030636907
+  },
+  {
+    "nome": "capituba",
+    "surface_temp": 31.028462463322118,
+    "index_vegetacao": 0.5607748319960222,
+    "temperature_2m": 20.135147505808106
+  },
+  {
+    "nome": "centro",
+    "surface_temp": 37.449529257750626,
+    "index_vegetacao": 0.21283279861621573,
+    "temperature_2m": 21.532282030636907
+  },
+  {
+    "nome": "cruzeiro",
+    "surface_temp": 30.033058508755467,
+    "index_vegetacao": 0.3681332596709625,
+    "temperature_2m": 20.418722750171696
+  },
+  {
+    "nome": "distrito insdustrial",
+    "surface_temp": 34.51096720537294,
+    "index_vegetacao": 0.3877049261254306,
+    "temperature_2m": 21.532282030636907
+  },
+  {
+    "nome": "ilheus",
+    "surface_temp": 29.71659484951531,
+    "index_vegetacao": 0.5123117324739711,
+    "temperature_2m": 20.135147505808106
+  }
+]
